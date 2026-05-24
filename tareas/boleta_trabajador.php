@@ -23,3 +23,29 @@ $tasa_afp       = 0.13; // 13% de aporte obligatorio
 $tasa_renta     = 0.08; // 8% simplificado de 5ta categoría
 $tasa_essalud   = 0.09; // 9% asumido por el empleador (Reto 1)
 
+// ============================================================================
+// 4. Bloque de Cálculos Operacionales (Uso de operadores aritméticos)
+// ============================================================================
+
+// Cálculo de los ingresos totales
+$pago_horas_extras = $horas_extras * $valor_hora_extra;
+$total_ingresos    = $sueldo_base + $asig_familiar + $pago_horas_extras;
+
+// Cálculo de los descuentos de ley (aplicados sobre el total de ingresos)
+$descuento_afp   = $total_ingresos * $tasa_afp;
+$descuento_renta = $total_ingresos * $tasa_renta;
+$total_descuentos = $descuento_afp + $descuento_renta;
+
+// Cálculo del sueldo neto final a recibir por el trabajador
+$sueldo_neto = $total_ingresos - $total_descuentos;
+
+// --- Cálculos de Retos Adicionales (Bonus) ---
+// Reto 1: Aporte de EsSalud (9% del sueldo bruto base)
+$essalud_empleador = $sueldo_base * $tasa_essalud;
+
+// Reto 2: Costo total que representa el trabajador para la empresa
+$costo_total_empresa = $total_ingresos + $essalud_empleador;
+
+// Reto 4: Cálculo del sueldo proporcional si solo hubiera trabajado 22 días
+$dias_proporcionales = 22;
+$sueldo_proporcional = ($sueldo_base / 30) * $dias_proporcionales;
