@@ -181,3 +181,104 @@ $sueldo_proporcional = ($sueldo_base / 30) * $dias_proporcionales;
     </style>
 </head>
 <body>
+
+<div class="boleta-container">
+    
+    <!-- Encabezado de la Boleta -->
+    <h1>Boleta de Pago — Minimarket Mass</h1>
+    <h3>Tienda: <?php echo $tienda; ?> · Periodo: <?php echo $periodo; ?></h3>
+
+    <!-- Datos del Trabajador -->
+    <table class="tabla-datos">
+        <tr>
+            <td><strong>Trabajador:</strong></td>
+            <td><?php echo $nombre; ?></td>
+            <td><strong>Días Trabajados:</strong></td>
+            <td><?php echo $dias_trab; ?> días</td>
+        </tr>
+        <tr>
+            <td><strong>DNI:</strong></td>
+            <td><?php echo $dni; ?></td>
+            <td><strong>Cargo:</strong></td>
+            <td><?php echo $cargo; ?></td>
+        </tr>
+        <tr>
+            <td><strong>Fecha de Emisión:</strong></td>
+            <!-- Reto 3: Uso de la fecha dinámica del sistema -->
+            <td colspan="3"><?php echo date("d/m/Y"); ?></td>
+        </tr>
+    </table>
+
+    <!-- Sección de Ingresos -->
+    <table class="tabla-financiera">
+        <thead>
+            <tr class="bg-ingresos">
+                <th colspan="2">Ingresos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Sueldo base</td>
+                <td class="text-right">S/ <?php echo number_format($sueldo_base, 2); ?></td>
+            </tr>
+            <tr>
+                <td>Asignación familiar</td>
+                <td class="text-right">S/ <?php echo number_format($asig_familiar, 2); ?></td>
+            </tr>
+            <tr>
+                <!-- Concatenación explícita con punto para detallar las horas extras calculadas -->
+                <td>Horas extras ( . <?php echo $horas_extras; ?> .  × S/  . <?php echo number_format($valor_hora_extra, 2); ?> . )</td>
+                <td class="text-right">S/ <?php echo number_format($pago_horas_extras, 2); ?></td>
+            </tr>
+            <tr class="fila-total">
+                <td>Total Ingresos</td>
+                <td class="text-right">S/ <?php echo number_format($total_ingresos, 2); ?></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Sección de Descuentos -->
+    <table class="tabla-financiera">
+        <thead>
+            <tr class="bg-descuentos">
+                <th colspan="2">Descuentos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>AFP (13%)</td>
+                <td class="text-right">S/ <?php echo number_format($descuento_afp, 2); ?></td>
+            </tr>
+            <tr>
+                <td>Impuesto a la Renta (8%)</td>
+                <td class="text-right">S/ <?php echo number_format($descuento_renta, 2); ?></td>
+            </tr>
+            <tr class="fila-total">
+                <td>Total Descuentos</td>
+                <td class="text-right">S/ <?php echo number_format($total_descuentos, 2); ?></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Neto a Pagar -->
+    <table class="tabla-financiera">
+        <thead>
+            <tr class="bg-totales">
+                <th class="fila-neto">Sueldo Neto a Pagar</th>
+                <th class="text-right fila-neto">S/ <?php echo number_format($sueldo_neto, 2); ?></th>
+            </tr>
+        </thead>
+    </table>
+
+    <!-- Información Corporativa y Aportes del Empleador (Retos 1, 2 y 4) -->
+    <div class="seccion-informativa">
+        <h4>Información Adicional / Aportes de la Empresa</h4>
+        <p><strong>Aporte EsSalud (9% asumido por empleador):</strong> S/ <?php echo number_format($essalud_empleador, 2); ?></p>
+        <p><strong>Costo total del trabajador para la empresa:</strong> S/ <?php echo number_format($costo_total_empresa, 2); ?></p>
+        <p style="margin-bottom: 0;"><strong>Proyección de sueldo proporcional (por <?php echo $dias_proporcionales; ?> días laborados):</strong> S/ <?php echo number_format($sueldo_proporcional, 2); ?></p>
+    </div>
+
+</div>
+
+</body>
+</html>
