@@ -4,7 +4,7 @@
 // Autor: Roberto Ricardo Araujo Ari
 // =======================================================
 
-// 1. Variables de atos del trabajador
+// 1. Variables de Datos del trabajador
 $nombre         = "Carlos Eduardo Mamani Quispe";
 $dni            = "74521893";
 $cargo          = "Jefe de almacén";
