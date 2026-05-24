@@ -49,3 +49,135 @@ $costo_total_empresa = $total_ingresos + $essalud_empleador;
 // Reto 4: Cálculo del sueldo proporcional si solo hubiera trabajado 22 días
 $dias_proporcionales = 22;
 $sueldo_proporcional = ($sueldo_base / 30) * $dias_proporcionales;
+
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boleta de Pago - <?php echo $nombre; ?></title>
+    <style>
+        /* Estilos globales y tipografía limpia */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9f0;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Contenedor principal estilo boleta formal */
+        .boleta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border: 1px solid #dcdcdc;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        /* Encabezados y títulos */
+        h1 {
+            color: #003366;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h3 {
+            color: #555;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-weight: normal;
+            border-bottom: 2px solid #003366;
+            padding-bottom: 10px;
+        }
+
+        /* Estructura de tablas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px 12px;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        /* Tabla de datos personales */
+        .tabla-datos {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            margin-bottom: 25px;
+        }
+
+        .tabla-datos td {
+            border: none;
+        }
+
+        /* Tablas de conceptos financieros */
+        .tabla-financiera th {
+            color: #ffffff;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Colores diferenciales solicitados */
+        .bg-ingresos { background-color: #2e7d32; } /* Verde para Ingresos */
+        .bg-descuentos { background-color: #c62828; } /* Rojo para Descuentos */
+        .bg-totales { background-color: #37474f; } /* Gris oscuro para Netos y Empresa */
+
+        .tabla-financiera td {
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .fila-total {
+            font-weight: bold;
+            background-color: #f1f3f5;
+        }
+
+        .fila-neto {
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        /* Sección informativa de retos */
+        .seccion-informativa {
+            background-color: #e8f4fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin-top: 25px;
+            font-size: 13px;
+        }
+
+        .seccion-informativa h4 {
+            margin: 0 0 8px 0;
+            color: #0d47a1;
+        }
+
+        /* Optimización para impresión */
+        @media print {
+            body { background-color: #fff; padding: 0; }
+            .boleta-container { box-shadow: none; border: none; padding: 0; }
+            .bg-ingresos, .bg-descuentos, .bg-totales {
+                color: #000 !important;
+                background-color: transparent !important;
+                border-bottom: 2px solid #000;
+            }
+            th { color: #000 !important; }
+            .seccion-informativa { border: 1px solid #ccc; background-color: #fff; }
+        }
+    </style>
+</head>
+<body>
