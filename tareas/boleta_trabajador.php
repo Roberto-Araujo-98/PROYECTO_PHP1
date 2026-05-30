@@ -132,7 +132,7 @@ $sueldo_proporcional = ($sueldo_base / 30) * $dias_proporcionales;
         /* Colores diferenciales solicitados */
         .bg-ingresos { background-color: #2e7d32; } /* Verde para Ingresos */
         .bg-descuentos { background-color: #c62828; } /* Rojo para Descuentos */
-        .bg-totales { background-color: #37474f; } /* Gris oscuro para Netos y Empresa */
+        .bg-totales { background-color: #6a24eb; } /* Gris oscuro para Netos y Empresa */
 
         .tabla-financiera td {
             border-bottom: 1px solid #dee2e6;
