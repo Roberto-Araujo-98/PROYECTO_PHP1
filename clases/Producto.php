@@ -64,4 +64,14 @@ class Producto {
     public function getCategoria(): string {
         return $this->categoria;
     }
+    // Agrégalo junto a tus otros getters
+    public function calcularTasaIGV(): float {
+    // Si la categoría es inafecta, el IGV es 0, si no, es 0.18
+    $inafectas = ['panadería', 'frutas y verduras'];
+    if (in_array(strtolower($this->categoria), $inafectas)) {
+        return 0.00;
+    }
+    return 0.18;
 }
+}
+?>
