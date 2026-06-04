@@ -83,7 +83,7 @@ if ($hora_actual >= 5 && $hora_actual <= 11) {
     exit;
 }
 
-/
+
 
 // ==========================================
 // 3. OUTPUT: COMPROBANTE HTML PROFESIONAL (ESTILO MASS)
