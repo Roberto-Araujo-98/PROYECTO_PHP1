@@ -11,3 +11,5 @@ echo gettype($dato) . "<br>";
 $dato = true;               // y ahora es booleano
 echo gettype($dato);
 ?>
+
+//+51 965 649 323
