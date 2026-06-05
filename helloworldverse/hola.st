@@ -1,0 +1,1 @@
+Transcript show: 'Hola Mundo desde Smalltalk!; cr.

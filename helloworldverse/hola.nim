@@ -1,0 +1,1 @@
+echo "Hola Mundo desde Nim!"
