@@ -26,6 +26,14 @@ switch ($accion) {
         $auth->logout();
         break;
 
+    case 'panel-admin':
+        requiereRol('admin');
+        $usuario = usuarioActual(); // Guardamos el array en una variable
+        echo "<h1>Panel de administración</h1>";
+        echo "<p>Bienvenido, administrador: " . htmlspecialchars($usuario['nombre']) . "</p>";
+        echo "<a href='index.php'>Volver al catálogo</a>";
+        break;
+
     case 'catalogo':
     default:
         requiereLogin();                      // sin sesión → manda al login

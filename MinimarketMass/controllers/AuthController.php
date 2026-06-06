@@ -60,15 +60,32 @@ class AuthController {
         }
 
         // 3. Login Exitoso
+      // 3. Login Exitoso
         $_SESSION['intentos_login'] = 0;
         unset($_SESSION['bloqueado_hasta']);
 
+        // --- INICIO DE LA MODIFICACIÓN CORRECTA ---
+        // 1. Registramos el +1 en la BD
+        $repo->registrarAcceso($usuario->getId()); 
+        
+        // 2. OBTENEMOS EL VALOR ACTUALIZADO
+        // Como ya actualizamos el Repositorio, podemos preguntar a la BD 
+        // cuál es el valor exacto que tiene AHORA MISMO.
+        $contadorReal = $repo->obtenerContadorActual($usuario->getId());
+        $pdo = getConexion(); 
+$stmt = $pdo->prepare("SELECT contador_accesos FROM usuarios WHERE id = :id");
+$stmt->execute([':id' => $usuario->getId()]);
+$contadorReal = (int)$stmt->fetchColumn();
+        $fechaAcceso = date('d/m/Y H:i');
+        // --- FIN DE LA MODIFICACIÓN ---
         $_SESSION['usuario'] = [
             'id'       => $usuario->getId(),
             'username' => $usuario->getUsername(),
             'nombre'   => $usuario->getNombreCompleto(),
             'rol'      => $usuario->getRol(),
             'tienda'   => $usuario->getTienda(),
+            'ultimo_acceso' => $fechaAcceso, // Guardamos la fecha aquí
+            'contador_accesos' => $contadorReal ,
         ];
 
         header('Location: index.php?accion=catalogo');
