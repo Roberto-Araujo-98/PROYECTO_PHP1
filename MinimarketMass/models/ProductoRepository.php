@@ -88,6 +88,47 @@ public function obtenerStockBajo(): array {
     }
 
     }
+
+// Muestra el formulario con los datos actuales del producto
+public function editar(): void
+{
+    $codigo = $_GET['codigo'] ?? '';
+
+    $repo = new ProductoRepository();
+    $producto = $repo->buscarPorCodigo($codigo);
+
+    if ($producto === null) {
+        header('Location: index.php');
+        exit;
+    }
+
+    require __DIR__ . '/../views/productos/editar.php';
+}
+
+// Procesa el formulario y guarda los cambios (Post-Redirect-Get)
+public function actualizar(): void
+{
+    $codigo = $_POST['codigo'] ?? '';
+    $nombre = trim($_POST['nombre'] ?? '');
+    $precio = $_POST['precio'] ?? '';
+    $stock  = $_POST['stock']  ?? '';
+
+    // Validación
+    if ($codigo === '' || $nombre === '' || $precio === '' || $stock === '') {
+        $error = 'Todos los campos son obligatorios.';
+        $producto = new Producto($codigo, $nombre, (float)$precio, (int)$stock);
+        require __DIR__ . '/../views/productos/editar.php';
+        return;
+    }
+
+    $producto = new Producto($codigo, $nombre, (float)$precio, (int)$stock);
+
+    $repo = new ProductoRepository();
+    $repo->actualizar($producto);
+
+    header('Location: index.php'); // PRG → vuelve al catálogo
+    exit;
+}
     public function guardar(): void {
     $codigo    = trim($_POST['codigo'] ?? '');
     $nombre    = trim($_POST['nombre'] ?? '');

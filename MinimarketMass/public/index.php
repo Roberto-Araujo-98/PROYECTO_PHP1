@@ -49,4 +49,12 @@ switch ($accion) {
         requiereLogin();
         (new ProductoController())->guardar();
         break;
+    
+    case 'editar-producto':
+    $controller->editar();
+    break;
+
+case 'actualizar-producto':
+    $controller->actualizar();
+    break;
 }

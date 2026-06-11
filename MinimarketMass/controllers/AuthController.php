@@ -4,7 +4,7 @@ require_once __DIR__ . '/../models/UsuarioRepository.php';
 
 class AuthController {
 
-    private const TIEMPO_BLOQUEO_MINUTOS = 1; // Cambia aquí los minutos que quieras
+    private const TIEMPO_BLOQUEO_MINUTOS = 0; // Cambia aquí los minutos que quieras
 
     public function mostrarLogin(string $error = ''): void {
         if (session_status() === PHP_SESSION_NONE) {
